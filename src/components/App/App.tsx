@@ -1,27 +1,38 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AppRoute } from '../../consts/const.ts';
-import MainPage from '../../pages/Main/Main.tsx';
-import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage.tsx';
-import Login from '../../pages/Login/Login.tsx';
-import Favorites from '../../pages/Favorites/Favorites.tsx';
-import Offer from '../../pages/Offer/Offer.tsx';
+import { AppRoute, AuthorizationStatus } from '../../consts/const.ts';
+import { MainPage, Login, Favorites, Offer, NotFoundPage } from '../../pages';
+import PrivateRoute from '../PrivateRoute/PrivateRoute.tsx';
+import { TOffer } from '../../types/TOffer.ts';
+import { TOfferById } from '../../types/TOfferById.ts';
+import Layout from '../Layout/Layout.tsx';
 
 type AppProps = {
   offersCount: number;
+  offers: TOffer[];
+  offerById: TOfferById;
 };
 
-function App({ offersCount }: AppProps) {
+function App({ offersCount, offers, offerById }: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path={AppRoute.Root}
-          element={<MainPage offersCount={offersCount} />}
-        />
-        <Route path={AppRoute.Login} element={<Login />} />
-        <Route path={AppRoute.Favorites} element={<Favorites />} />
-        <Route path={AppRoute.Offer} element={<Offer />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path={AppRoute.Root} element={<Layout />}>
+          <Route
+            index
+            element={<MainPage offersCount={offersCount} offers={offers} />}
+          />
+          <Route path={AppRoute.Login} element={<Login />} />
+          <Route
+            path={AppRoute.Favorites}
+            element={
+              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                <Favorites offers={offers} />
+              </PrivateRoute>
+            }
+          />
+          <Route path={AppRoute.Offer} element={<Offer offer={offerById} />} />
+        </Route>
+        <Route path={'*'} element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
