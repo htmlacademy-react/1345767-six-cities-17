@@ -16,7 +16,7 @@ $heading: #e7ebf2;
   text-align: center;
 }
 
-h1 {
+.not-found-container h1 {
   color: $heading;
   font-size: 12.5rem;
   letter-spacing: .10em;
@@ -35,16 +35,16 @@ h1 {
   }
 }
 
-h2 {
+.not-found-container h2 {
   color: $heading;
   margin-bottom: .40em;
 }
 
-.return-link {
+.not-found-container .return-link {
   color: #ee7f6b;
 }
 
-.return-link:hover {
+.not-found-container .return-link:hover {
   opacity: 0.7;
 }
 
