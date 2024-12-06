@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 
 function PageNotFound() {
   return (
-    <section>
+    <>
       <Helmet>
         <title>Страница не найдена</title>
       </Helmet>
@@ -15,7 +15,7 @@ function PageNotFound() {
           <Link to={'/'}>Вернуться на главную</Link>
         </h2>
       </div>
-    </section>
+    </>
   );
 }
 

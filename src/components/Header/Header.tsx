@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const.ts';
+import { offers } from '../../mocks/offers.ts';
 
 function Header() {
+  const favoriteOffersCount =
+    offers?.filter(({ isFavorite }) => isFavorite)?.length || 0;
+
   return (
     <header className="header">
       <div className="container">
@@ -27,10 +32,14 @@ function Header() {
                   href="#"
                 >
                   <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                  <span className="header__user-name user__name">
-                    Oliver.conner@gmail.com
+                  <Link to={AppRoute.Favorites}>
+                    <span className="header__user-name user__name">
+                      Oliver.conner@gmail.com
+                    </span>
+                  </Link>
+                  <span className="header__favorite-count">
+                    {favoriteOffersCount}
                   </span>
-                  <span className="header__favorite-count">3</span>
                 </a>
               </li>
               <li className="header__nav-item">
