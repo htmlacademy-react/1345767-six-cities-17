@@ -31,7 +31,10 @@ function App({ placesCount, offers, offerById }: TAppProps) {
                 </PrivateRoute>
               }
             />
-            <Route path={AppRoute.Offer} element={<Offer data={offerById} />} />
+            <Route
+              path={AppRoute.Offer}
+              element={<Offer offers={offers} data={offerById} />}
+            />
           </Route>
           <Route path={'*'} element={<PageNotFound />} />
         </Routes>

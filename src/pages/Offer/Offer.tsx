@@ -1,14 +1,17 @@
+import classNames from 'classnames';
 import { Helmet } from 'react-helmet-async';
-import { TOfferById } from '../../types/offers.ts';
+import { TOffer, TOfferById } from '../../types/offers.ts';
 import { generateUUID } from '../../utils/generateUUID.ts';
 import CommentForm from '../../components/CommentForm/CommentForm.tsx';
 import { getRatingStyles } from '../../utils/getRatingStyles.ts';
+import Map from '../../components/Map/Map.tsx';
 
 type TOfferProps = {
   data: TOfferById;
+  offers: TOffer[];
 };
 
-function Offer({ data }: TOfferProps) {
+function Offer({ offers, data }: TOfferProps) {
   const {
     images,
     isPremium,
@@ -24,8 +27,6 @@ function Offer({ data }: TOfferProps) {
     host: { name, isPro, avatarUrl },
   } = data;
 
-  const offerBookmarkStyles = `offer__bookmark-button ${isFavorite && ' offer__bookmark-button--active'} button`;
-  const offerAvatarStyles = `offer__avatar-wrapper${isPro && ' offer__avatar-wrapper--pro'} user__avatar-wrapper`;
   const adultsCount = `Max ${maxAdults} adult${maxAdults === 1 ? '' : 's'}`;
 
   return (
@@ -57,7 +58,14 @@ function Offer({ data }: TOfferProps) {
               )}
               <div className="offer__name-wrapper">
                 <h1 className="offer__name">{title}</h1>
-                <button className={offerBookmarkStyles} type="button">
+                <button
+                  className={classNames(
+                    'offer__bookmark-button',
+                    { 'offer__bookmark-button--active': isFavorite },
+                    'button',
+                  )}
+                  type="button"
+                >
                   <svg className="offer__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
@@ -102,7 +110,13 @@ function Offer({ data }: TOfferProps) {
               <div className="offer__host">
                 <h2 className="offer__host-title">Meet the host</h2>
                 <div className="offer__host-user user">
-                  <div className={offerAvatarStyles}>
+                  <div
+                    className={classNames(
+                      'offer__avatar-wrapper',
+                      { 'offer__avatar-wrapper--pro': isPro },
+                      'user__avatar-wrapper',
+                    )}
+                  >
                     <img
                       className="offer__avatar user__avatar"
                       src={avatarUrl}
@@ -158,7 +172,7 @@ function Offer({ data }: TOfferProps) {
               </section>
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <Map className="offer__map map" offers={offers} activeOffer={data} />
         </section>
         <div className="container">
           <section className="near-places places">
