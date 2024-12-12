@@ -1,21 +1,27 @@
 import { TOffer } from '../../types/TOffer.ts';
 import OfferCard from '../OfferCard/OfferCard.tsx';
-import { useState } from 'react';
 
 type OfferCardListProps = {
   offers: TOffer[];
+  setActiveOffer: (offer: TOffer) => void;
+  isNearbyOffers: boolean;
 };
 
-function OfferCardList({ offers }: OfferCardListProps) {
-  const [, setCurrentCard] = useState<TOffer>();
+function OfferCardList({
+  offers,
+  setActiveOffer,
+  isNearbyOffers,
+}: OfferCardListProps) {
+  const cardClassWrapper = `${isNearbyOffers ? 'near-places__list' : 'cities__places-list tabs__content'} places__list`;
 
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div className={cardClassWrapper}>
       {offers?.map((offer) => (
         <OfferCard
           key={offer.id}
           offer={offer}
-          setCurrentCard={setCurrentCard}
+          setCurrentCard={setActiveOffer}
+          isNearbyOffer={isNearbyOffers}
         />
       ))}
     </div>
