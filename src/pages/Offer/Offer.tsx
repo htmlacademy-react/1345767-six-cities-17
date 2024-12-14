@@ -21,11 +21,12 @@ function Offer({ offerById }: TOfferProps) {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-            <OffersList
-              containerStyles="near-places__list places__list"
-              itemStyles="near-places__card place-card"
-              offers={offersNearby}
-            />
+            <div className="near-places__list places__list">
+              <OffersList
+                itemStyles="near-places__card place-card"
+                offers={offersNearby}
+              />
+            </div>
           </section>
         </div>
       </main>

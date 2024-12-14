@@ -1,9 +1,9 @@
 import OffersList from '../OffersList/OffersList.tsx';
 import Map from '../Map/Map.tsx';
 import { TOffer } from '../../types/offers.ts';
+import { useAppSelector } from '../../hooks';
 
 type TOffersContainerProps = {
-  placesCount: number;
   offers: TOffer[];
   setActiveOffer: (offer: TOffer | undefined) => void;
   activeOffer?: TOffer;
@@ -11,16 +11,17 @@ type TOffersContainerProps = {
 
 function OffersContainer({
   offers,
-  placesCount,
   activeOffer,
   setActiveOffer,
 }: TOffersContainerProps) {
+  const city = useAppSelector((state) => state.city);
+
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
         <b className="places__found">
-          {placesCount} places to stay in Amsterdam
+          {offers.length} places to stay in {city}
         </b>
         <form className="places__sorting" action="#" method="get">
           <span className="places__sorting-caption">Sort by &nbsp;</span>
@@ -45,16 +46,22 @@ function OffersContainer({
             </li>
           </ul>
         </form>
-        <OffersList
-          containerStyles="cities__places-list places__list tabs__content"
-          itemStyles="cities__card place-card"
-          offers={offers}
-          setActiveOffer={setActiveOffer}
-        />
+        <div className="cities__places-list places__list tabs__content">
+          <OffersList
+            itemStyles="cities__card place-card"
+            offers={offers}
+            setActiveOffer={setActiveOffer}
+          />
+        </div>
       </section>
       <div className="cities__right-section">
         <section className="cities__map map">
-          <Map offers={offers} activeOffer={activeOffer} />
+          <Map
+            key={city}
+            city={offers[0].city}
+            offers={offers}
+            activeOffer={activeOffer}
+          />
         </section>
       </div>
     </div>

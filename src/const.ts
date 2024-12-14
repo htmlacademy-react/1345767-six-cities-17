@@ -1,8 +1,11 @@
+import { TCityTypes } from './types/offers.ts';
+
 export enum AppRoute {
   Root = '/',
   Login = '/login',
   Favorites = '/favorites',
   Offer = '/offer/:id',
+  NotFound = '*',
 }
 
 export enum AuthStatus {
@@ -11,12 +14,15 @@ export enum AuthStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const URL_MARKER_DEFAULT =
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
+export const URL_MARKER_DEFAULT = 'public/img/pin.svg';
 
-export const URL_MARKER_CURRENT =
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
+export const URL_MARKER_CURRENT = 'public/img/pin-active.svg';
 
-export const Settings = {
-  placesCount: 312,
-};
+export const Cities: TCityTypes[] = [
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf',
+];

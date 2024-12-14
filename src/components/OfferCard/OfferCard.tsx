@@ -1,6 +1,7 @@
 import { TOffer } from '../../types/offers.ts';
 import { getRatingStyles } from '../../utils/getRatingStyles.ts';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
 type TOfferCardProps = {
   offer: TOffer;
@@ -19,7 +20,7 @@ function OfferCard({ className, offer }: TOfferCardProps) {
         </div>
       )}
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link to={`/offer/${offer.id}`}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -27,7 +28,7 @@ function OfferCard({ className, offer }: TOfferCardProps) {
             height="200"
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -61,7 +62,9 @@ function OfferCard({ className, offer }: TOfferCardProps) {
         <h2 className="place-card__name">
           <a href="#">{title}</a>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">
+          {type.charAt(0).toUpperCase() + type.slice(1)}
+        </p>
       </div>
     </article>
   );
