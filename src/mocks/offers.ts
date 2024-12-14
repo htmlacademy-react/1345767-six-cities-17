@@ -4,6 +4,52 @@ import { generateUUID } from '../utils/generateUUID.ts';
 export const offers: TOffer[] = [
   {
     id: generateUUID(),
+    title: 'Canal View Prinsengracht',
+    type: 'apartment',
+    price: 132,
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.8534,
+        longitude: 2.3488,
+        zoom: 12,
+      },
+    },
+    location: {
+      latitude: 48.8584,
+      longitude: 2.2821,
+      zoom: 8,
+    },
+    isFavorite: true,
+    isPremium: false,
+    rating: 4,
+    previewImage: 'img/apartment-02.jpg',
+  },
+  {
+    id: generateUUID(),
+    title: 'Beautiful & luxurious studio at great location',
+    type: 'apartment',
+    price: 120,
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.8534,
+        longitude: 2.3488,
+        zoom: 12,
+      },
+    },
+    location: {
+      latitude: 48.8554,
+      longitude: 2.3788,
+      zoom: 8,
+    },
+    isFavorite: false,
+    isPremium: true,
+    rating: 2.15545,
+    previewImage: 'img/apartment-01.jpg',
+  },
+  {
+    id: generateUUID(),
     title: 'Beautiful & luxurious studio at great location',
     type: 'apartment',
     price: 120,
@@ -20,7 +66,7 @@ export const offers: TOffer[] = [
       longitude: 4.85309666406198,
       zoom: 8,
     },
-    isFavorite: false,
+    isFavorite: true,
     isPremium: true,
     rating: 2.15545,
     previewImage: 'img/apartment-01.jpg',
@@ -137,4 +183,4 @@ export const offerById: TOfferById = {
   maxAdults: 4,
 };
 
-export const offersNearby: TOffer[] = offers.slice(1, 4);
+export const offersNearby: TOffer[] = offers.slice(3, 6);

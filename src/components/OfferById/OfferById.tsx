@@ -123,7 +123,12 @@ function OfferById({ offerById }: TOfferByIdProps) {
         </div>
       </div>
       <section className="offer__map map">
-        <Map offers={offersNearby} activeOffer={offerById} isNearby />
+        <Map
+          city={offerById.city}
+          offers={offersNearby}
+          activeOffer={offerById}
+          isNearby
+        />
       </section>
     </section>
   );

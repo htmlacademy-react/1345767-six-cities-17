@@ -8,12 +8,11 @@ import { TOffer, TOfferById } from '../../types/offers.ts';
 import { useState } from 'react';
 
 type TAppProps = {
-  placesCount: number;
   offers: TOffer[];
   offerById: TOfferById;
 };
 
-function App({ placesCount, offers, offerById }: TAppProps) {
+function App({ offers, offerById }: TAppProps) {
   const [activeOffer, setActiveOffer] = useState<TOffer | undefined>();
 
   const authStatus = AuthStatus.Auth;
@@ -29,8 +28,6 @@ function App({ placesCount, offers, offerById }: TAppProps) {
                 <Main
                   activeOffer={activeOffer}
                   setActiveOffer={setActiveOffer}
-                  placesCount={placesCount}
-                  offers={offers}
                 />
               }
             />
@@ -51,7 +48,7 @@ function App({ placesCount, offers, offerById }: TAppProps) {
               element={<Offer offerById={offerById} />}
             />
           </Route>
-          <Route path={'*'} element={<PageNotFound />} />
+          <Route path={AppRoute.NotFound} element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

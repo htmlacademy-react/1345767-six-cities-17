@@ -2,10 +2,11 @@ import { useEffect, useRef } from 'react';
 import useMap from '../../hooks/use-map.tsx';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../const.ts';
 import { Icon, layerGroup, Marker } from 'leaflet';
-import { TOffer, TOfferById } from '../../types/offers.ts';
+import { TCity, TOffer, TOfferById } from '../../types/offers.ts';
 import 'leaflet/dist/leaflet.css';
 
 type TMapProps = {
+  city: TCity;
   offers: TOffer[];
   activeOffer?: TOffer | TOfferById;
   isNearby?: boolean;
@@ -13,19 +14,19 @@ type TMapProps = {
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
+  iconSize: [27, 39],
+  iconAnchor: [27, 39],
 });
 
 const currentCustomIcon = new Icon({
   iconUrl: URL_MARKER_CURRENT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
+  iconSize: [27, 39],
+  iconAnchor: [27, 39],
 });
 
-function Map({ offers, activeOffer, isNearby }: TMapProps) {
+function Map({ city, offers, activeOffer, isNearby }: TMapProps) {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, offers[0].city);
+  const map = useMap(mapRef, city.location);
 
   useEffect(() => {
     if (isNearby && map && activeOffer) {

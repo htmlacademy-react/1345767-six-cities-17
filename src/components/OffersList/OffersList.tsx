@@ -1,20 +1,13 @@
 import { TOffer } from '../../types/offers.ts';
 import OfferCard from '../OfferCard/OfferCard.tsx';
-import { Link } from 'react-router-dom';
 
 type TOffersListProps = {
   offers: TOffer[];
-  containerStyles: string;
   itemStyles: string;
   setActiveOffer?: (offer: TOffer | undefined) => void;
 };
 
-function OffersList({
-  offers,
-  setActiveOffer,
-  containerStyles,
-  itemStyles,
-}: TOffersListProps) {
+function OffersList({ offers, setActiveOffer, itemStyles }: TOffersListProps) {
   const handleMouseEnter = (offer: TOffer) =>
     setActiveOffer ? setActiveOffer(offer) : null;
 
@@ -22,18 +15,17 @@ function OffersList({
     setActiveOffer ? setActiveOffer(undefined) : null;
 
   return (
-    <div className={containerStyles}>
+    <>
       {offers.map((offer) => (
-        <Link
-          to={`/offer/${offer.id}`}
+        <div
           key={offer.id}
           onMouseEnter={() => handleMouseEnter(offer)}
           onMouseLeave={handleMouseLeave}
         >
           <OfferCard className={itemStyles} offer={offer} />
-        </Link>
+        </div>
       ))}
-    </div>
+    </>
   );
 }
 
