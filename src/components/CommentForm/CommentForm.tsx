@@ -20,7 +20,6 @@ function CommentForm() {
 
   const handleSubmitForm = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    console.log({ formState });
     setFormState(initialFormState);
   };
 

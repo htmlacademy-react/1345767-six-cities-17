@@ -15,16 +15,20 @@ function OffersList({
   containerStyles,
   itemStyles,
 }: TOffersListProps) {
+  const handleMouseEnter = (offer: TOffer) =>
+    setActiveOffer ? setActiveOffer(offer) : null;
+
+  const handleMouseLeave = () =>
+    setActiveOffer ? setActiveOffer(undefined) : null;
+
   return (
     <div className={containerStyles}>
       {offers.map((offer) => (
         <Link
           to={`/offer/${offer.id}`}
           key={offer.id}
-          onMouseEnter={() => (setActiveOffer ? setActiveOffer(offer) : null)}
-          onMouseLeave={() =>
-            setActiveOffer ? setActiveOffer(undefined) : null
-          }
+          onMouseEnter={() => handleMouseEnter(offer)}
+          onMouseLeave={handleMouseLeave}
         >
           <OfferCard className={itemStyles} offer={offer} />
         </Link>

@@ -22,7 +22,7 @@ export const comments: TComment[] = [
       avatarUrl: 'img/avatar-angelina.jpg',
       isPro: false,
     },
-    comment: "It's fucking fuck!!!",
+    comment: 'I think this is bullshit!',
     rating: 1,
   },
 ];
