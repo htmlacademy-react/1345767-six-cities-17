@@ -1,6 +1,21 @@
 import { Helmet } from 'react-helmet-async';
+import { AppRoute, AuthStatus } from '../../const.ts';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-function Login() {
+type TLoginProps = {
+  authStatus: AuthStatus;
+};
+
+function Login({ authStatus }: TLoginProps) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (authStatus === AuthStatus.Auth) {
+      navigate(AppRoute.Root);
+    }
+  }, [authStatus, navigate]);
+
   return (
     <div className="page page--gray page--login">
       <Helmet>

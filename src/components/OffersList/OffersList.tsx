@@ -4,14 +4,33 @@ import { Link } from 'react-router-dom';
 
 type TOffersListProps = {
   offers: TOffer[];
+  containerStyles: string;
+  itemStyles: string;
+  setActiveOffer?: (offer: TOffer | undefined) => void;
 };
 
-function OffersList({ offers }: TOffersListProps) {
+function OffersList({
+  offers,
+  setActiveOffer,
+  containerStyles,
+  itemStyles,
+}: TOffersListProps) {
+  const handleMouseEnter = (offer: TOffer) =>
+    setActiveOffer ? setActiveOffer(offer) : null;
+
+  const handleMouseLeave = () =>
+    setActiveOffer ? setActiveOffer(undefined) : null;
+
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div className={containerStyles}>
       {offers.map((offer) => (
-        <Link to={`/offer/${offer.id}`} key={offer.id}>
-          <OfferCard offer={offer} />
+        <Link
+          to={`/offer/${offer.id}`}
+          key={offer.id}
+          onMouseEnter={() => handleMouseEnter(offer)}
+          onMouseLeave={handleMouseLeave}
+        >
+          <OfferCard className={itemStyles} offer={offer} />
         </Link>
       ))}
     </div>

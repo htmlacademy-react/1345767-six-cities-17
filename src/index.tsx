@@ -2,14 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App/App.tsx';
 import { offerById, offers } from './mocks/offers.ts';
+import { Settings } from './const.ts';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
-
-const Settings = {
-  placesCount: 312,
-};
 
 root.render(
   <React.StrictMode>

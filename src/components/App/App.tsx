@@ -5,6 +5,7 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute.tsx';
 import { Main, Login, Favorites, Offer, PageNotFound } from '../../pages';
 import { AppRoute, AuthStatus } from '../../const.ts';
 import { TOffer, TOfferById } from '../../types/offers.ts';
+import { useState } from 'react';
 
 type TAppProps = {
   placesCount: number;
@@ -13,6 +14,10 @@ type TAppProps = {
 };
 
 function App({ placesCount, offers, offerById }: TAppProps) {
+  const [activeOffer, setActiveOffer] = useState<TOffer | undefined>();
+
+  const authStatus = AuthStatus.Auth;
+
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -20,18 +25,31 @@ function App({ placesCount, offers, offerById }: TAppProps) {
           <Route path={AppRoute.Root} element={<Layout />}>
             <Route
               index
-              element={<Main placesCount={placesCount} offers={offers} />}
+              element={
+                <Main
+                  activeOffer={activeOffer}
+                  setActiveOffer={setActiveOffer}
+                  placesCount={placesCount}
+                  offers={offers}
+                />
+              }
             />
-            <Route path={AppRoute.Login} element={<Login />} />
+            <Route
+              path={AppRoute.Login}
+              element={<Login authStatus={authStatus} />}
+            />
             <Route
               path={AppRoute.Favorites}
               element={
-                <PrivateRoute authStatus={AuthStatus.Auth}>
+                <PrivateRoute authStatus={authStatus}>
                   <Favorites offers={offers} />
                 </PrivateRoute>
               }
             />
-            <Route path={AppRoute.Offer} element={<Offer data={offerById} />} />
+            <Route
+              path={AppRoute.Offer}
+              element={<Offer offerById={offerById} />}
+            />
           </Route>
           <Route path={'*'} element={<PageNotFound />} />
         </Routes>
