@@ -8,7 +8,7 @@ import OffersContainer from '../../components/OffersContainer/OffersContainer.ts
 type TMainProps = {
   placesCount: number;
   offers: TOffer[];
-  setActiveOffer: (offer: TOffer) => void;
+  setActiveOffer: (offer: TOffer | undefined) => void;
   activeOffer?: TOffer;
 };
 

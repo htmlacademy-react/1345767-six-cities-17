@@ -5,7 +5,7 @@ import { TOffer } from '../../types/offers.ts';
 type TOffersContainerProps = {
   placesCount: number;
   offers: TOffer[];
-  setActiveOffer: (offer: TOffer) => void;
+  setActiveOffer: (offer: TOffer | undefined) => void;
   activeOffer?: TOffer;
 };
 

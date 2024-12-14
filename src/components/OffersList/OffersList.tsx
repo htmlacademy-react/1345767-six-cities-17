@@ -6,7 +6,7 @@ type TOffersListProps = {
   offers: TOffer[];
   containerStyles: string;
   itemStyles: string;
-  setActiveOffer?: (offer: TOffer) => void;
+  setActiveOffer?: (offer: TOffer | undefined) => void;
 };
 
 function OffersList({
