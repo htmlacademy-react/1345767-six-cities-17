@@ -8,9 +8,16 @@ import OffersContainer from '../../components/OffersContainer/OffersContainer.ts
 type TMainProps = {
   placesCount: number;
   offers: TOffer[];
+  setActiveOffer: (offer: TOffer) => void;
+  activeOffer?: TOffer;
 };
 
-function Main({ placesCount, offers }: TMainProps) {
+function Main({
+  placesCount,
+  offers,
+  activeOffer,
+  setActiveOffer,
+}: TMainProps) {
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -25,7 +32,12 @@ function Main({ placesCount, offers }: TMainProps) {
         <CityTabs />
         <div className="cities">
           {offers.length ? (
-            <OffersContainer offers={offers} placesCount={placesCount} />
+            <OffersContainer
+              offers={offers}
+              placesCount={placesCount}
+              activeOffer={activeOffer}
+              setActiveOffer={setActiveOffer}
+            />
           ) : (
             <EmptyOffersContainer />
           )}

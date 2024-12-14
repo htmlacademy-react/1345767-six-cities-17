@@ -14,6 +14,7 @@ function Header() {
             <Link
               to="/"
               className="header__logo-link header__logo-link--active"
+              style={{ cursor: 'pointer' }}
             >
               <img
                 className="header__logo"

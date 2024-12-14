@@ -132,7 +132,8 @@ function OfferNotLogged() {
               </div>
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">
-                  Reviews &middot; <span className="reviews__amount">1</span>
+                  ReviewsList &middot;{' '}
+                  <span className="reviews__amount">1</span>
                 </h2>
                 <ul className="reviews__list">
                   <li className="reviews__item">
@@ -143,7 +144,7 @@ function OfferNotLogged() {
                           src="img/avatar-max.jpg"
                           width="54"
                           height="54"
-                          alt="Reviews avatar"
+                          alt="ReviewsList avatar"
                         />
                       </div>
                       <span className="reviews__user-name"> Max </span>

@@ -7,8 +7,8 @@ import 'leaflet/dist/leaflet.css';
 
 type TMapProps = {
   offers: TOffer[];
-  activeOffer: TOffer | TOfferById;
-  className: string;
+  activeOffer?: TOffer | TOfferById;
+  isNearby?: boolean;
 };
 
 const defaultCustomIcon = new Icon({
@@ -23,13 +23,24 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40],
 });
 
-function Map({ offers, activeOffer, className }: TMapProps) {
+function Map({ offers, activeOffer, isNearby }: TMapProps) {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, activeOffer.city);
+  const map = useMap(mapRef, offers[0].city);
+
+  useEffect(() => {
+    if (isNearby && map && activeOffer) {
+      const markerLayer = layerGroup().addTo(map);
+      const { latitude: lat, longitude: lng } = activeOffer.location;
+      const marker = new Marker({ lat, lng });
+
+      marker.setIcon(currentCustomIcon).addTo(markerLayer);
+    }
+  }, [activeOffer, isNearby, map]);
 
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
+
       offers.forEach(({ location, title }) => {
         const { latitude: lat, longitude: lng } = location;
 
@@ -37,26 +48,27 @@ function Map({ offers, activeOffer, className }: TMapProps) {
 
         marker
           .setIcon(
-            !!activeOffer && title === activeOffer.title
+            activeOffer?.title === title
               ? currentCustomIcon
               : defaultCustomIcon,
           )
           .addTo(markerLayer);
       });
 
+      if (isNearby && activeOffer?.location) {
+        const { latitude: lat, longitude: lng } = activeOffer.location;
+        const marker = new Marker({ lat, lng });
+
+        marker.setIcon(currentCustomIcon).addTo(markerLayer);
+      }
+
       return () => {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, offers, activeOffer]);
+  }, [map, offers, activeOffer, isNearby]);
 
-  return (
-    <section
-      className={className}
-      style={{ maxWidth: '800px', margin: '0 auto' }}
-      ref={mapRef}
-    />
-  );
+  return <div style={{ height: '100%' }} ref={mapRef} />;
 }
 
 export default Map;

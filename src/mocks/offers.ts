@@ -111,19 +111,19 @@ export const offerById: TOfferById = {
   },
   location: {
     latitude: 52.35514938496378,
-    longitude: 4.673877537499948,
+    longitude: 4.873877537499948,
     zoom: 8,
   },
-  isFavorite: true,
+  isFavorite: false,
   isPremium: true,
-  rating: 4,
+  rating: 2,
   description:
     'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-  bedrooms: 3,
+  bedrooms: 1,
   goods: ['Wi-Fi', 'Heating', 'Washing machine', 'Towels'],
   host: {
     name: 'Oliver Conner',
-    avatarUrl: 'img/avatar-angelina.jpg',
+    avatarUrl: 'img/avatar-max.jpg',
     isPro: true,
   },
   images: [
@@ -134,5 +134,7 @@ export const offerById: TOfferById = {
     'img/studio-01.jpg',
     'img/apartment-01.jpg',
   ],
-  maxAdults: 2,
+  maxAdults: 4,
 };
+
+export const offersNearby: TOffer[] = offers.slice(1, 4);

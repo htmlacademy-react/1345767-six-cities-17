@@ -1,16 +1,20 @@
 import OffersList from '../OffersList/OffersList.tsx';
 import Map from '../Map/Map.tsx';
 import { TOffer } from '../../types/offers.ts';
-import { useState } from 'react';
 
 type TOffersContainerProps = {
   placesCount: number;
   offers: TOffer[];
+  setActiveOffer: (offer: TOffer) => void;
+  activeOffer?: TOffer;
 };
 
-function OffersContainer({ offers, placesCount }: TOffersContainerProps) {
-  const [activeOffer, setActiveOffer] = useState<TOffer>(offers[0]);
-
+function OffersContainer({
+  offers,
+  placesCount,
+  activeOffer,
+  setActiveOffer,
+}: TOffersContainerProps) {
   return (
     <div className="cities__places-container container">
       <section className="cities__places places">
@@ -41,14 +45,17 @@ function OffersContainer({ offers, placesCount }: TOffersContainerProps) {
             </li>
           </ul>
         </form>
-        <OffersList offers={offers} setActiveOffer={setActiveOffer} />
+        <OffersList
+          containerStyles="cities__places-list places__list tabs__content"
+          itemStyles="cities__card place-card"
+          offers={offers}
+          setActiveOffer={setActiveOffer}
+        />
       </section>
       <div className="cities__right-section">
-        <Map
-          className="cities__map map"
-          offers={offers}
-          activeOffer={activeOffer}
-        />
+        <section className="cities__map map">
+          <Map offers={offers} activeOffer={activeOffer} />
+        </section>
       </div>
     </div>
   );
