@@ -1,5 +1,6 @@
 import { TOffer, TOfferById } from '../types/offers.ts';
 import { generateUUID } from '../utils/generateUUID.ts';
+import { CityTypes } from '../const.ts';
 
 export const mockOffers: TOffer[] = [
   {
@@ -8,7 +9,7 @@ export const mockOffers: TOffer[] = [
     type: 'apartment',
     price: 132,
     city: {
-      name: 'Paris',
+      name: CityTypes.Paris,
       location: {
         latitude: 48.8534,
         longitude: 2.3488,
@@ -31,7 +32,7 @@ export const mockOffers: TOffer[] = [
     type: 'apartment',
     price: 120,
     city: {
-      name: 'Paris',
+      name: CityTypes.Paris,
       location: {
         latitude: 48.8534,
         longitude: 2.3488,
@@ -54,7 +55,7 @@ export const mockOffers: TOffer[] = [
     type: 'apartment',
     price: 120,
     city: {
-      name: 'Amsterdam',
+      name: CityTypes.Amsterdam,
       location: {
         latitude: 52.3731,
         longitude: 4.8913,
@@ -77,7 +78,7 @@ export const mockOffers: TOffer[] = [
     type: 'room',
     price: 80,
     city: {
-      name: 'Amsterdam',
+      name: CityTypes.Amsterdam,
       location: {
         latitude: 52.3731,
         longitude: 4.8913,
@@ -100,7 +101,7 @@ export const mockOffers: TOffer[] = [
     type: 'apartment',
     price: 132,
     city: {
-      name: 'Amsterdam',
+      name: CityTypes.Amsterdam,
       location: {
         latitude: 52.3731,
         longitude: 4.8913,
@@ -123,7 +124,7 @@ export const mockOffers: TOffer[] = [
     type: 'apartment',
     price: 180,
     city: {
-      name: 'Amsterdam',
+      name: CityTypes.Amsterdam,
       location: {
         latitude: 52.3731,
         longitude: 4.8913,
@@ -148,7 +149,7 @@ export const offerById: TOfferById = {
   type: 'apartment',
   price: 120,
   city: {
-    name: 'Amsterdam',
+    name: CityTypes.Amsterdam,
     location: {
       latitude: 52.3731,
       longitude: 4.8913,
