@@ -1,15 +1,14 @@
 import { Helmet } from 'react-helmet-async';
-import { TCityTypes, TOffer } from '../../types/offers.ts';
 import { groupOffersByCity } from '../../utils/groupOffersByCity.ts';
 import { Link } from 'react-router-dom';
 import { getRatingStyles } from '../../utils/getRatingStyles.ts';
 import FavoritesFooter from '../../components/FavoritesFooter/FavoritesFooter.tsx';
+import { useAppSelector } from '../../hooks';
+import { CityTypes } from '../../const.ts';
 
-type TFavoritesProps = {
-  offers: TOffer[];
-};
+function Favorites() {
+  const offers = useAppSelector((state) => state.offers);
 
-function Favorites({ offers }: TFavoritesProps) {
   const favoriteOffers = offers.filter(({ isFavorite }) => isFavorite);
   const offersByCity = groupOffersByCity(favoriteOffers);
 
@@ -34,7 +33,7 @@ function Favorites({ offers }: TFavoritesProps) {
                       </div>
                     </div>
                     <div className="favorites__places">
-                      {offersByCity[city as TCityTypes].map(
+                      {offersByCity[city as CityTypes].map(
                         ({
                           id,
                           isPremium,

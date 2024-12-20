@@ -1,7 +1,7 @@
 import { TOffer, TOfferById } from '../types/offers.ts';
 import { generateUUID } from '../utils/generateUUID.ts';
 
-export const offers: TOffer[] = [
+export const mockOffers: TOffer[] = [
   {
     id: generateUUID(),
     title: 'Canal View Prinsengracht',
@@ -16,8 +16,8 @@ export const offers: TOffer[] = [
       },
     },
     location: {
-      latitude: 48.8584,
-      longitude: 2.2821,
+      latitude: 48.8684,
+      longitude: 2.3121,
       zoom: 8,
     },
     isFavorite: true,
@@ -183,4 +183,4 @@ export const offerById: TOfferById = {
   maxAdults: 4,
 };
 
-export const offersNearby: TOffer[] = offers.slice(3, 6);
+export const offersNearby: TOffer[] = mockOffers.slice(3, 6);

@@ -5,15 +5,21 @@ import { Link } from 'react-router-dom';
 
 type TOfferCardProps = {
   offer: TOffer;
-  className: string;
+  isNearby?: boolean;
 };
 
-function OfferCard({ className, offer }: TOfferCardProps) {
+function OfferCard({ offer, isNearby }: TOfferCardProps) {
   const { isPremium, previewImage, price, rating, type, title, isFavorite } =
     offer;
 
   return (
-    <article className={className}>
+    <article
+      className={classNames(
+        { 'cities--card': !isNearby },
+        { 'near-places__card': isNearby },
+        'place-card',
+      )}
+    >
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>

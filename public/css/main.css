@@ -580,7 +580,7 @@ img {
   margin-left: -8px;
   padding-left: 5px;
 }
-.cities__card {
+.cities--card {
   width: 260px;
   margin-left: 8px;
   margin-bottom: 24px;
@@ -770,11 +770,20 @@ img {
   margin-bottom: 33px;
   padding-left: 5px;
 }
-.places__sorting-arrow {
+.places__sorting-arrow-down {
   position: absolute;
   top: 55%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
+  right: 0;
+  fill: #0d0d0d;
+}
+.places__sorting-arrow-up {
+  position: absolute;
+  top: 55%;
+  -webkit-transform: translateY(50%);
+  transform: translateY(50%);
+  rotate: -180deg;
   right: 0;
   fill: #0d0d0d;
 }

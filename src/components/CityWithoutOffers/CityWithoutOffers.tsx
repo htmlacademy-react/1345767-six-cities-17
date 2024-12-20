@@ -1,6 +1,6 @@
 import { useAppSelector } from '../../hooks';
 
-function EmptyOffersContainer() {
+function CityWithoutOffers() {
   const city = useAppSelector((state) => state.city);
 
   return (
@@ -18,4 +18,4 @@ function EmptyOffersContainer() {
   );
 }
 
-export default EmptyOffersContainer;
+export default CityWithoutOffers;

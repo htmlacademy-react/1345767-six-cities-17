@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const.ts';
-import { offers } from '../../mocks/offers.ts';
+import { useAppSelector } from '../../hooks';
 
 function Header() {
+  const offers = useAppSelector((state) => state.offers);
+
   const favoriteOffersCount =
     offers?.filter(({ isFavorite }) => isFavorite)?.length || 0;
 
