@@ -1,4 +1,9 @@
-import { TCityTypes } from './types/offers.ts';
+export const URL_MARKER_DEFAULT = 'public/img/pin.svg';
+
+export const URL_MARKER_CURRENT = 'public/img/pin-active.svg';
+
+export const VoyagerMapLayer =
+  'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
 
 export enum AppRoute {
   Root = '/',
@@ -14,15 +19,18 @@ export enum AuthStatus {
   Unknown = 'UNKNOWN',
 }
 
-export const URL_MARKER_DEFAULT = 'public/img/pin.svg';
+export enum CityTypes {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf',
+}
 
-export const URL_MARKER_CURRENT = 'public/img/pin-active.svg';
-
-export const Cities: TCityTypes[] = [
-  'Paris',
-  'Cologne',
-  'Brussels',
-  'Amsterdam',
-  'Hamburg',
-  'Dusseldorf',
-];
+export enum SortTypes {
+  Popular = 'Popular',
+  PriceLow = 'Price: low to high',
+  PriceHigh = 'Price: high to low',
+  TopRated = 'Top rated first',
+}

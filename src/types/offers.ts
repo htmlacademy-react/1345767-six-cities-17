@@ -1,12 +1,6 @@
-export type TCityTypes =
-  | 'Paris'
-  | 'Cologne'
-  | 'Brussels'
-  | 'Amsterdam'
-  | 'Hamburg'
-  | 'Dusseldorf';
+import { CityTypes } from '../const.ts';
 
-export type TCityOffers = Record<TCityTypes, TOffer[]>;
+export type TCityOffers = Record<CityTypes, TOffer[]>;
 
 export type THousingTypes = 'apartment' | 'room' | 'house' | 'hotel';
 
@@ -17,7 +11,7 @@ export type TLocation = {
 };
 
 export type TCity = {
-  name: TCityTypes;
+  name: CityTypes;
   location: TLocation;
 };
 

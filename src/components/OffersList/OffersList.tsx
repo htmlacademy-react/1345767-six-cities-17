@@ -3,16 +3,15 @@ import OfferCard from '../OfferCard/OfferCard.tsx';
 
 type TOffersListProps = {
   offers: TOffer[];
-  itemStyles: string;
   setActiveOffer?: (offer: TOffer | undefined) => void;
+  isNearby?: boolean;
 };
 
-function OffersList({ offers, setActiveOffer, itemStyles }: TOffersListProps) {
+function OffersList({ offers, setActiveOffer, isNearby }: TOffersListProps) {
   const handleMouseEnter = (offer: TOffer) =>
-    setActiveOffer ? setActiveOffer(offer) : null;
+    setActiveOffer && setActiveOffer(offer);
 
-  const handleMouseLeave = () =>
-    setActiveOffer ? setActiveOffer(undefined) : null;
+  const handleMouseLeave = () => setActiveOffer && setActiveOffer(undefined);
 
   return (
     <>
@@ -22,7 +21,7 @@ function OffersList({ offers, setActiveOffer, itemStyles }: TOffersListProps) {
           onMouseEnter={() => handleMouseEnter(offer)}
           onMouseLeave={handleMouseLeave}
         >
-          <OfferCard className={itemStyles} offer={offer} />
+          <OfferCard offer={offer} isNearby={isNearby} />
         </div>
       ))}
     </>

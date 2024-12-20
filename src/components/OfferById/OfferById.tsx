@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import Map from '../Map/Map.tsx';
 import { getRatingStyles } from '../../utils/getRatingStyles.ts';
 import { TOfferById } from '../../types/offers.ts';
-import { offersNearby } from '../../mocks/offers.ts';
+import { offersNearby } from '../../mocks/mockOffers.ts';
 import ReviewsList from '../ReviewsList/ReviewsList.tsx';
 import { getNoun } from '../../utils/getNoun.ts';
 
@@ -123,12 +123,7 @@ function OfferById({ offerById }: TOfferByIdProps) {
         </div>
       </div>
       <section className="offer__map map">
-        <Map
-          city={offerById.city}
-          offers={offersNearby}
-          activeOffer={offerById}
-          isNearby
-        />
+        <Map offers={offersNearby} activeOffer={offerById} isNearby />
       </section>
     </section>
   );
