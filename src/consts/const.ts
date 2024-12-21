@@ -1,20 +1,24 @@
-import { TCityTypes } from '../types/TCityTypes.ts';
-import { City } from '../types/TOffer.ts';
+import { TCityName } from '../types/TCityName.ts';
+import { TSortingType } from '../types/TSortingType.ts';
 
-const Settings = {
-  OffersCount: 312,
-} as const;
-
-const Cities: TCityTypes[] = [
-  'Amsterdam',
-  'Brussels',
-  'Cologne',
-  'Dusseldorf',
-  'Hamburg',
+const Cities: TCityName[] = [
   'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf',
 ];
 
-const DEFAULT_CITY: City | null = null;
+const SortingTypes: TSortingType[] = [
+  'Popular',
+  'Price: low to high',
+  'Price: high to low',
+  'TopRating',
+];
+
+const DEFAULT_CITY: TCityName = 'Paris';
+const DEFAULT_SORTING: TSortingType = 'Popular';
 
 // CONST FOR RATING
 const MAX_STARS_FOR_RATING = 5;
@@ -45,10 +49,11 @@ enum AuthorizationStatus {
 }
 
 export {
-  Settings,
   RatingStars,
   Cities,
+  SortingTypes,
   DEFAULT_CITY,
+  DEFAULT_SORTING,
   MAX_STARS_FOR_RATING,
   RatingStyle,
   AppRoute,
