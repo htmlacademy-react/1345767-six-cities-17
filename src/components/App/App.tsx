@@ -1,13 +1,14 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../consts/const.ts';
+import { Route, Routes } from 'react-router-dom';
+import { AppRoute } from '../../consts/const.ts';
 import { MainPage, Login, Favorites, Offer, NotFoundPage } from '../../pages';
 import PrivateRoute from '../PrivateRoute/PrivateRoute.tsx';
 import Layout from '../Layout/Layout.tsx';
-import { offersNearby } from '../../mocks/offers.ts';
+import HistoryRouter from '../HistoryRouter/HistoryRouter.tsx';
+import browserHistory from '../../browserHistory/browserHistory.ts';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route path={AppRoute.Root} element={<Layout />}>
           <Route index element={<MainPage />} />
@@ -20,19 +21,11 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route
-            path={AppRoute.Offer}
-            element={
-              <Offer
-                offersNearby={offersNearby}
-                authorisationStatus={AuthorizationStatus.Auth}
-              />
-            }
-          />
+          <Route path={AppRoute.Offer} element={<Offer />} />
         </Route>
         <Route path={'*'} element={<NotFoundPage />} />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 

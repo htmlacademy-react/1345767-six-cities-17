@@ -17,7 +17,7 @@ function Header() {
   ).length;
 
   const authorizationStatus = useAppSelector(
-    (state) => state.authorizationStatus,
+    (state) => state.USER.authorizationStatus,
   );
 
   const isAuth = authorizationStatus === AuthorizationStatus.Auth;
@@ -60,11 +60,15 @@ function Header() {
                     className="header__avatar-wrapper user__avatar-wrapper"
                     style={avatarStyle}
                   />
-                  <span className="header__user-name user__name">{email}</span>
                   {isAuth && (
-                    <span className="header__favorite-count">
-                      {favoriteOffersCount}
-                    </span>
+                    <>
+                      <span className="header__user-name user__name">
+                        {email}
+                      </span>
+                      <span className="header__favorite-count">
+                        {favoriteOffersCount}
+                      </span>
+                    </>
                   )}
                 </Link>
               </li>
