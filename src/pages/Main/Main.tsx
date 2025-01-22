@@ -4,20 +4,25 @@ import EmptyCity from '../../components/EmptyCity/EmptyCity.tsx';
 import FilledCity from '../../components/FilledCity/FilledCity.tsx';
 import classNames from 'classnames';
 import { useEffect } from 'react';
-import { sortOffers } from '../../store/action.ts';
 import { useDispatch } from 'react-redux';
 import LoadingScreen from '../../components/LoadingScreen/LoadingScreen.tsx';
+import { sortOffers } from '../../store/offersData/offersData.ts';
+import {
+  getCurrentSortingType,
+  getOffersByCity,
+  getOffersLoadedStatus,
+} from '../../store/offersData/selectors.ts';
 
 function MainPage() {
-  const offersByCity = useAppSelector((state) => state.offersByCity);
-  const currentSortingType = useAppSelector((state) => state.sortingType);
-  const isOffersLoaded = useAppSelector((state) => state.isOffersDataLoaded);
+  const offersByCity = useAppSelector(getOffersByCity);
+  const currentSortingType = useAppSelector(getCurrentSortingType);
+  const isOffersLoaded = useAppSelector(getOffersLoadedStatus);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(sortOffers());
-  }, [dispatch, currentSortingType, offersByCity]);
+  }, [dispatch, currentSortingType, offersByCity, isOffersLoaded]);
 
   if (!isOffersLoaded) {
     return <LoadingScreen />;

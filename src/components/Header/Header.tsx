@@ -5,6 +5,7 @@ import { useAppSelector } from '../../hooks/useAppSelector.ts';
 import { useAppDispatch } from '../../hooks/useAppDispatch.ts';
 import { logoutAction } from '../../store/api-actions.ts';
 import { getUserData } from '../../services/token.ts';
+import { getAuthorizationStatus } from '../../store/userData/selectors.ts';
 
 function Header() {
   const dispatch = useAppDispatch();
@@ -16,9 +17,7 @@ function Header() {
     (offer) => offer.isFavorite,
   ).length;
 
-  const authorizationStatus = useAppSelector(
-    (state) => state.authorizationStatus,
-  );
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const isAuth = authorizationStatus === AuthorizationStatus.Auth;
 
@@ -60,11 +59,15 @@ function Header() {
                     className="header__avatar-wrapper user__avatar-wrapper"
                     style={avatarStyle}
                   />
-                  <span className="header__user-name user__name">{email}</span>
                   {isAuth && (
-                    <span className="header__favorite-count">
-                      {favoriteOffersCount}
-                    </span>
+                    <>
+                      <span className="header__user-name user__name">
+                        {email}
+                      </span>
+                      <span className="header__favorite-count">
+                        {favoriteOffersCount}
+                      </span>
+                    </>
                   )}
                 </Link>
               </li>
