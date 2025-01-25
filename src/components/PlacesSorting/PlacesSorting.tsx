@@ -2,14 +2,15 @@ import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../hooks/useAppSelector.ts';
 import { SortingTypes } from '../../consts/const.ts';
-import { changeSortingType } from '../../store/action.ts';
 import { TSortingType } from '../../types/TSortingType.ts';
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
+import { changeSortingType } from '../../store/offersData/offersData.ts';
+import { getCurrentSortingType } from '../../store/offersData/selectors.ts';
 
-function PlacesSorting() {
+function PlacesSortingTemplate() {
   const [isFormOpened, setIsFormOpened] = useState(false);
   const sortSpanRef = useRef<HTMLSpanElement>(null);
-  const currentSortingType = useAppSelector((state) => state.sortingType);
+  const currentSortingType = useAppSelector(getCurrentSortingType);
   const dispatch = useDispatch();
 
   const hideSortingType = (evt: MouseEvent) => {
@@ -68,5 +69,7 @@ function PlacesSorting() {
     </form>
   );
 }
+
+const PlacesSorting = memo(PlacesSortingTemplate);
 
 export default PlacesSorting;
