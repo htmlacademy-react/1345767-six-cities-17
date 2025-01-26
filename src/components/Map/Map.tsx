@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, memo } from 'react';
 import leaflet, { layerGroup, Marker } from 'leaflet';
 import { TOffer } from '../../types/TOffer.ts';
 import useMap from '../../hooks/useMap.ts';
@@ -24,10 +24,15 @@ const currentCustomIcon = leaflet.icon({
   iconAnchor: [27, 39],
 });
 
-function Map({ activeOffer, offers, isNearby }: TMapProps): JSX.Element {
+function MapTemplate({
+  activeOffer,
+  offers,
+  isNearby,
+}: TMapProps): JSX.Element {
   const mapRef = useRef(null);
+  const city = activeOffer?.city || offers[0].city;
 
-  const map = useMap(mapRef, offers[0].city);
+  const map = useMap(mapRef, city, isNearby);
 
   useEffect(() => {
     if (map) {
@@ -61,5 +66,7 @@ function Map({ activeOffer, offers, isNearby }: TMapProps): JSX.Element {
 
   return <div style={{ height: '100%' }} ref={mapRef}></div>;
 }
+
+const Map = memo(MapTemplate);
 
 export default Map;

@@ -56,6 +56,13 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+enum NameSpace {
+  App = 'App',
+  User = 'USER',
+  Offers = 'OFFER',
+  Comments = 'COMMENTS',
+}
+
 export {
   RatingStars,
   Cities,
@@ -71,4 +78,5 @@ export {
   MAP_ATTRIBUTION,
   URL_MARKER_DEFAULT,
   URL_MARKER_CURRENT,
+  NameSpace,
 };
