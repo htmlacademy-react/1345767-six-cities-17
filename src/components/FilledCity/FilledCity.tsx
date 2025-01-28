@@ -1,15 +1,26 @@
+import { useAppSelector } from '../../hooks/useAppSelector.ts';
+import { useAppDispatch } from '../../hooks/useAppDispatch.ts';
 import OfferCardList from '../OfferCardList/OfferCardList.tsx';
 import PlacesSorting from '../PlacesSorting/PlacesSorting.tsx';
 import Map from '../Map/Map.tsx';
-import { useAppSelector } from '../../hooks/useAppSelector.ts';
-import { useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { TOffer } from '../../types/TOffer.ts';
+import { changeCurrentOfferId } from '../../store/offersProcess/offersProcess.ts';
+import { getOffersByCity } from '../../store/offersProcess/selectors.ts';
+import { getCurrentCityName } from '../../store/appProcess/selectors.ts';
 
-function FilledCity() {
-  const city = useAppSelector((state) => state.city);
-  const offersByCity = useAppSelector((state) => state.offersByCity);
+function FilledCityTemplate() {
+  const city = useAppSelector(getCurrentCityName);
+  const offersByCity = useAppSelector(getOffersByCity);
+  const dispatch = useAppDispatch();
 
   const [activeOffer, setActiveOffer] = useState<TOffer>();
+
+  useEffect(() => {
+    if (activeOffer) {
+      dispatch(changeCurrentOfferId(activeOffer.id));
+    }
+  }, [dispatch, activeOffer]);
 
   return (
     <div className="cities__places-container container">
@@ -33,5 +44,7 @@ function FilledCity() {
     </div>
   );
 }
+
+const FilledCity = memo(FilledCityTemplate);
 
 export default FilledCity;

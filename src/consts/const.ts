@@ -19,6 +19,7 @@ const SortingTypes: TSortingType[] = [
 
 const DEFAULT_CITY: TCityName = 'Paris';
 const DEFAULT_SORTING: TSortingType = 'Popular';
+const OFFER_CLASS_NAME = 'offer';
 
 // CONST FOR RATING
 const MAX_STARS_FOR_RATING = 5;
@@ -56,6 +57,14 @@ enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+enum NameSpace {
+  App = 'App',
+  User = 'USER',
+  Offers = 'OFFER',
+  Comments = 'COMMENTS',
+  Favorite = 'FAVORITE',
+}
+
 export {
   RatingStars,
   Cities,
@@ -71,4 +80,6 @@ export {
   MAP_ATTRIBUTION,
   URL_MARKER_DEFAULT,
   URL_MARKER_CURRENT,
+  OFFER_CLASS_NAME,
+  NameSpace,
 };
